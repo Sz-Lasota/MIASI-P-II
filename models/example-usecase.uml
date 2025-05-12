@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_MIZYUC5EEfCrrISm0PkERA" name="useCase">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_MK1BQC5EEfCrrISm0PkERA">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_NEVcIC5EEfCrrISm0PkERA" name="Magazynier"/>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_O8B9kC5EEfCrrISm0PkERA" name="Master Magazynier">
+    <generalization xmi:type="uml:Generalization" xmi:id="_Sz9RYC5EEfCrrISm0PkERA" general="_NEVcIC5EEfCrrISm0PkERA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_WGR9wC5EEfCrrISm0PkERA" name="A">
+    <extend xmi:type="uml:Extend" xmi:id="_Hhr98C8rEfC8YaNe0zKqTA" extendedCase="_Znx2EC8qEfC8YaNe0zKqTA" extensionLocation="_HhtzIC8rEfC8YaNe0zKqTA"/>
+    <include xmi:type="uml:Include" xmi:id="_auamgC5EEfCrrISm0PkERA" addition="_Y9ZU0C5EEfCrrISm0PkERA"/>
+    <include xmi:type="uml:Include" xmi:id="_JX9jEC8rEfC8YaNe0zKqTA" addition="_nf7rAC5hEfCrrISm0PkERA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_XBELAC5EEfCrrISm0PkERA" name="B">
+    <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_oDRHwC5EEfCrrISm0PkERA" name="ExtensionPoint1"/>
+    <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_URvNMC8kEfC8YaNe0zKqTA" name="ExtensionPoint2"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_XtsngC5EEfCrrISm0PkERA" name="C"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_pPWgYC5EEfCrrISm0PkERA" memberEnd="_pPYVkC5EEfCrrISm0PkERA _pPY8oC5EEfCrrISm0PkERA">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_pPXugC5EEfCrrISm0PkERA" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_pPXugS5EEfCrrISm0PkERA" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_pPYVkC5EEfCrrISm0PkERA" name="a" type="_WGR9wC5EEfCrrISm0PkERA" association="_pPWgYC5EEfCrrISm0PkERA"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_pPY8oC5EEfCrrISm0PkERA" name="mastermagazynier" type="_O8B9kC5EEfCrrISm0PkERA" association="_pPWgYC5EEfCrrISm0PkERA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_qLW1oC5EEfCrrISm0PkERA" memberEnd="_qLXcsC5EEfCrrISm0PkERA _qLXcsS5EEfCrrISm0PkERA">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_qLW1oS5EEfCrrISm0PkERA" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_qLW1oi5EEfCrrISm0PkERA" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_qLXcsC5EEfCrrISm0PkERA" name="b" type="_XBELAC5EEfCrrISm0PkERA" association="_qLW1oC5EEfCrrISm0PkERA"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_qLXcsS5EEfCrrISm0PkERA" name="magazynier" type="_NEVcIC5EEfCrrISm0PkERA" association="_qLW1oC5EEfCrrISm0PkERA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_qwMBAC5EEfCrrISm0PkERA" memberEnd="_qwMoEi5EEfCrrISm0PkERA _qwMoEy5EEfCrrISm0PkERA">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_qwMoEC5EEfCrrISm0PkERA" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_qwMoES5EEfCrrISm0PkERA" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_qwMoEi5EEfCrrISm0PkERA" name="c" type="_XtsngC5EEfCrrISm0PkERA" association="_qwMBAC5EEfCrrISm0PkERA"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_qwMoEy5EEfCrrISm0PkERA" name="magazynier" type="_NEVcIC5EEfCrrISm0PkERA" association="_qwMBAC5EEfCrrISm0PkERA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_nf7rAC5hEfCrrISm0PkERA" name="F">
+    <generalization xmi:type="uml:Generalization" xmi:id="_omxXQC5hEfCrrISm0PkERA" general="_XtsngC5EEfCrrISm0PkERA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_PUWV4C8TEfCbiMYP4BxldA" name="Package14">
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_Y9ZU0C5EEfCrrISm0PkERA" name="E"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_YcFXgC5EEfCrrISm0PkERA" name="D">
+      <extend xmi:type="uml:Extend" xmi:id="_URsw8C8kEfC8YaNe0zKqTA" extendedCase="_XBELAC5EEfCrrISm0PkERA" extensionLocation="_URvNMC8kEfC8YaNe0zKqTA"/>
+      <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_bcvsIC5EEfCrrISm0PkERA" name="ExtensionPoint1"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_X--FMC8qEfC8YaNe0zKqTA" name="Package13">
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_ISM4IC5rEfCrrISm0PkERA" name="UseCase13">
+      <extend xmi:type="uml:Extend" xmi:id="_kANCcC8qEfC8YaNe0zKqTA" extendedCase="_Znx2EC8qEfC8YaNe0zKqTA" extensionLocation="_kANpgC8qEfC8YaNe0zKqTA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_Znx2EC8qEfC8YaNe0zKqTA" name="UseCase15">
+      <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_kANpgC8qEfC8YaNe0zKqTA" name="ExtensionPoint1"/>
+      <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_HhtzIC8rEfC8YaNe0zKqTA" name="ExtensionPoint2"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_i6zgoC8qEfC8YaNe0zKqTA" memberEnd="_i61V0C8qEfC8YaNe0zKqTA _i61V0S8qEfC8YaNe0zKqTA">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_i60uwC8qEfC8YaNe0zKqTA" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_i60uwS8qEfC8YaNe0zKqTA" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_i61V0C8qEfC8YaNe0zKqTA" name="mastermagazynier" type="_O8B9kC5EEfCrrISm0PkERA" association="_i6zgoC8qEfC8YaNe0zKqTA"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_i61V0S8qEfC8YaNe0zKqTA" name="usecase13" type="_ISM4IC5rEfCrrISm0PkERA" association="_i6zgoC8qEfC8YaNe0zKqTA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_l-WKIC8qEfC8YaNe0zKqTA" memberEnd="_l-XYQi8qEfC8YaNe0zKqTA _l-X_UC8qEfC8YaNe0zKqTA">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_l-XYQC8qEfC8YaNe0zKqTA" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_l-XYQS8qEfC8YaNe0zKqTA" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_l-XYQi8qEfC8YaNe0zKqTA" name="magazynier" type="_NEVcIC5EEfCrrISm0PkERA" association="_l-WKIC8qEfC8YaNe0zKqTA"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_l-X_UC8qEfC8YaNe0zKqTA" name="usecase15" type="_Znx2EC8qEfC8YaNe0zKqTA" association="_l-WKIC8qEfC8YaNe0zKqTA"/>
+  </packagedElement>
+</uml:Model>

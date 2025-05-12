@@ -1,0 +1,211 @@
+module UseCase2Class;
+
+-- @nsURI UML=http://www.eclipse.org/uml2/5.0.0/UML
+
+--- This module provides functionality to transform UseCase diagrams to Class diagrams, based on following rules:
+--- 	1. All Actors are converted to coresponding Class, class name is Actor name* + 'Controller' word, Actor class have
+---			operations coressponding to associated UseCases
+--- 	2. All UseCases are converted to Classes with class name the same as* UseCase name
+---		3. All generalization relations are preserved, it means if Actor1 is generalized version of Actor2, then 
+---			Actor1Controller class is generalized version of Actor2Controller class. The same goes for UseCases
+---		4. Associations between Actor and UseCase is preserved, so if Actor1 associated with UseCase1, then Actor1Controller Class 
+---			will be associated with UseCase1 Class
+---		5. If UseCase includes another UseCase, then Class coressponding to *Whole* UseCase will have composition with *Part* UseCase
+---		6. If UseCase have extension as another UseCase, then Class coressponding to *Whole* UseCase will have aggregation with *Part* UseCase
+--- 	7. Package structure is preserved
+---	* Spaces are converted to '_'
+
+create OUT: UML from IN: UML;
+
+--- Helper to get all UseCases associated with provided Actor
+helper def : getAssociatedUseCases(a : UML!Actor) : Sequence(UML!UseCase) =
+	UML!Association.allInstances()->select(
+		assoc | assoc.ownedEnd->select(end | end.oclIsTypeOf(UML!Property) and end.type = a)->notEmpty()
+	)->collect(
+		assoc | assoc.ownedEnd->select(end | not (end.type = a))->first().type
+	)->asSequence();
+
+--- Helper to get all UseCases that are extension to provided UseCase
+helper def : getExtensionUseCases(uc: UML!UseCase) : Sequence(UML!UseCase) =
+	UML!UseCase.allInstances()->select(
+		uc1 | uc1.extend->select(ex | ex.extendedCase = uc)->notEmpty()
+	)->asSequence();
+
+--- Helper to transform names with spaces to valid Class diagram names (replacing spaces with '_')
+helper def : standarizeName(s : String) : String = s.replaceAll(' ', '_');
+
+
+--- Rule to transform Actors to Classes
+rule ActorToClass { 
+	from 
+		a : UML!Actor 
+	to
+		c : UML!Class ( 
+				name <- thisModule.standarizeName(a.name) + 'Controller',
+				ownedOperation <- thisModule.getAssociatedUseCases(a)->collect(
+					uc |  thisModule.UseCaseToOperation(uc)
+				),
+				generalization <- a.generalization->collect(
+					gen | thisModule.ActorGeneralizationToGeneralization(gen)
+				)
+			)
+	do {
+		for (uc in thisModule.getAssociatedUseCases(a)) {
+			thisModule.ActorUseCaseAssociation(uc, c);
+		}
+	}
+}
+
+--- Called rule to create association between Actor class and UseCase class
+rule ActorUseCaseAssociation(uc : UML!UseCase, c : UML!Class) {
+	to
+		assoc : UML!Association(
+			ownedEnd <- thisModule.OwnedEndFromUseCase(uc),
+			ownedEnd <- thisModule.OwnedEndFromClass(c)
+		)
+}
+
+--- Rule to create class from UseCase, adds OwnedAtrribute to class, coresponding to 
+--- Included cases and extension cases. Creates Associations
+rule UseCaseToClass { 
+	from 
+		uc : UML!UseCase
+	to
+		cl : UML!Class(
+				name <- uc.name,
+				generalization <- uc.generalization->collect(
+					gen | thisModule.CaseGeneralizationToGeneralization(gen)
+				),
+				ownedAttribute <- uc.include->collect(
+					inc | thisModule.IncludeToComposition(inc)
+				),
+				ownedAttribute <- thisModule.getExtensionUseCases(uc)->collect(
+					uc1 | thisModule.ExtensionUseCaseToAggregation(uc1)
+				)
+				
+			)
+	do {
+		for (attr in cl.ownedAttribute) {
+			thisModule.UseCaseRelationToAssociation(uc, attr);
+		}
+	}
+	
+}
+
+--- Creates Property for UseCase class to handle 'Include' relation and transform it to composition
+lazy rule IncludeToComposition {
+	from
+		inc: UML!Include
+	to
+		attr: UML!Property(
+			aggregation <- 'composite',
+			name <- thisModule.standarizeName(inc.addition.name).toLower(),
+			type <- inc.addition
+		)
+}
+
+--- Creates Property for UseCase class to handle 'Extend' relation and transform it to aggregation
+lazy rule ExtensionUseCaseToAggregation {
+	from
+		uc : UML!UseCase
+	to
+		attr : UML!Property(
+			aggregation <- 'shared',
+			name <- thisModule.standarizeName(uc.name).toLower(),
+			type <- uc
+		)
+}
+
+--- Called rule that creates Association between both Included and Extended pairs of Usecases
+rule UseCaseRelationToAssociation(uc : UML!UseCase, p : UML!Property) {
+	to
+		assoc : UML!Association(
+			ownedEnd <- thisModule.OwnedEndFromUseCase(uc),
+			memberEnd <- assoc.ownedEnd,
+			memberEnd <- p
+		)
+}
+
+
+--- Lazy rule to create OwnedEnd Property from UseCase
+lazy rule OwnedEndFromUseCase {
+	from
+		c : UML!UseCase
+	to 
+		p : UML!Property(
+			name <- thisModule.standarizeName(c.name),
+			type <- c
+		)
+}
+
+
+--- Lazy rule to create OwnedEnd Property from UseCase
+lazy rule OwnedEndFromClass {
+	from
+		c : UML!Class
+	to 
+		p : UML!Property(
+			type <- c
+		)
+}
+
+
+--- Transforms Generaliztion between Actors to Generalization between classes
+lazy rule ActorGeneralizationToGeneralization {
+	from
+		gIn: UML!Generalization(gIn.general.oclIsTypeOf(UML!Actor))
+	to
+		gOut: UML!Generalization(
+			general <- gIn.general
+		)
+}
+
+
+--- Transforms Generaliztion between UseCases to Generalization between classes
+lazy rule CaseGeneralizationToGeneralization {
+	from
+		gIn: UML!Generalization(gIn.general.oclIsTypeOf(UML!UseCase))
+	to
+		gOut: UML!Generalization(
+			general <- gIn.general
+		)
+}
+
+--- Creates operation for Actor class with provided UseCase
+lazy rule UseCaseToOperation { 
+	from 
+		uc : UML!UseCase
+	to
+		op : UML!Operation ( 
+				name <- thisModule.standarizeName(uc.name).toLower(),
+				ownedParameter <- Sequence {}
+			)
+}
+
+--- Rule to pack all transformed elements and **new** elements to new model
+rule ModelToModel {
+	from
+		pIn : UML!Model
+	to 
+		POut : UML!Model(
+			name <- thisModule.standarizeName(pIn.name),
+			packagedElement <- pIn.packagedElement,
+			packagedElement <- UML!Association.allInstances()
+		)
+}
+
+--- Rule to pack 
+rule PackageToPackage {
+	from
+		pIn : UML!Package(
+			not pIn.oclIsTypeOf(UML!Model)	
+		)
+	to 
+		pOut : UML!Package(
+			name <- thisModule.standarizeName(pIn.name),
+			packagedElement <- pIn.packagedElement
+		)
+}
+
+
+
