@@ -92,13 +92,48 @@ rule UseCaseToClass {
 	
 }
 
+rule RealiztionToComposition {
+	from
+		r: UML!Realization
+	to
+		a: UML!Association(
+				ownedEnd <- thisModule.RealizationOwnedEndChild(r.supplier->first()),
+				ownedEnd <- thisModule.RealizationOwnedEndOwner(r.client->first()),
+				memberEnd <- a.ownedEnd
+		)
+}
+
+lazy rule RealizationOwnedEndChild {
+	from
+		uc: UML!UseCase
+	to
+		p: UML!Property(
+			name <- thisModule.standarizeName(uc.name).toLower(),
+			type <- uc,
+			aggregation <- 'composite'
+		)
+}
+
+lazy rule RealizationOwnedEndOwner {
+	from
+		uc: UML!UseCase
+	to
+		p: UML!Property(
+			name <- thisModule.standarizeName(uc.name).toLower(),
+			type <- uc,
+			upper <- 1,
+			lower <- 1
+			
+		)
+}
+
 --- Creates Property for UseCase class to handle 'Include' relation and transform it to composition
 lazy rule IncludeToComposition {
 	from
 		inc: UML!Include
 	to
 		attr: UML!Property(
-			aggregation <- 'composite',
+			aggregation <- 'shared',
 			name <- thisModule.standarizeName(inc.addition.name).toLower(),
 			type <- inc.addition
 		)

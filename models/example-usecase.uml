@@ -4,7 +4,7 @@
     <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
   </packageImport>
   <packagedElement xmi:type="uml:Actor" xmi:id="_NEVcIC5EEfCrrISm0PkERA" name="Magazynier"/>
-  <packagedElement xmi:type="uml:Actor" xmi:id="_O8B9kC5EEfCrrISm0PkERA" name="Master Magazynier">
+  <packagedElement xmi:type="uml:Actor" xmi:id="_O8B9kC5EEfCrrISm0PkERA" name="MasterMagazynier">
     <generalization xmi:type="uml:Generalization" xmi:id="_Sz9RYC5EEfCrrISm0PkERA" general="_NEVcIC5EEfCrrISm0PkERA"/>
   </packagedElement>
   <packagedElement xmi:type="uml:UseCase" xmi:id="_WGR9wC5EEfCrrISm0PkERA" name="A">
@@ -71,4 +71,6 @@
     <ownedEnd xmi:type="uml:Property" xmi:id="_l-XYQi8qEfC8YaNe0zKqTA" name="magazynier" type="_NEVcIC5EEfCrrISm0PkERA" association="_l-WKIC8qEfC8YaNe0zKqTA"/>
     <ownedEnd xmi:type="uml:Property" xmi:id="_l-X_UC8qEfC8YaNe0zKqTA" name="usecase15" type="_Znx2EC8qEfC8YaNe0zKqTA" association="_l-WKIC8qEfC8YaNe0zKqTA"/>
   </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_9_dIcDYqEfCDwuXdKFBHlw" name="UseCase16"/>
+  <packagedElement xmi:type="uml:Realization" xmi:id="__jNaMDYqEfCDwuXdKFBHlw" client="_nf7rAC5hEfCrrISm0PkERA" supplier="_9_dIcDYqEfCDwuXdKFBHlw"/>
 </uml:Model>
