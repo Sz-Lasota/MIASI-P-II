@@ -229,7 +229,7 @@ rule ModelToModel {
 		)
 }
 
---- Rule to pack 
+--- Rule to preserve packages
 rule PackageToPackage {
 	from
 		pIn : UML!Package(
