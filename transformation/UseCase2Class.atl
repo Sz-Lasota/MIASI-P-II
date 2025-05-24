@@ -25,15 +25,52 @@ helper def : getAssociatedUseCases(a : UML!Actor) : Sequence(UML!UseCase) =
 		assoc | assoc.ownedEnd->select(end | not (end.type = a))->first().type
 	)->asSequence();
 
---- Helper to get all UseCases that are extension to provided UseCase
-helper def : getExtensionUseCases(uc: UML!UseCase) : Sequence(UML!UseCase) =
-	UML!UseCase.allInstances()->select(
-		uc1 | uc1.extend->select(ex | ex.extendedCase = uc)->notEmpty()
-	)->asSequence();
+
 
 --- Helper to transform names with spaces to valid Class diagram names (replacing spaces with '_')
 helper def : standarizeName(s : String) : String = s.replaceAll(' ', '_');
 
+helper def: toLowerCamelCase(input : String) : String =
+  let words : Sequence(String) = input.split(' ') in
+  let firstWord : String = words->first().toLower() in
+  let restWords : String = words->subSequence(2, words->size())->collect(
+  	w | w.substring(1, 1).toUpper() + w.substring(2, w.size()).toLower()
+  )->iterate(w; acc : String = '' | acc + w) in
+  firstWord + restWords;
+
+ helper def: toUpperCamelCase(input : String) : String =
+  let words : Sequence(String) = input.split(' ') in
+  words->collect(
+  	w | w.substring(1, 1).toUpper() + w.substring(2, w.size()).toLower()
+  )->iterate(w; acc : String = '' | acc + w);
+
+helper def : getExtendedUseCase(ep: UML!ExtensionPoint) : UML!UseCase =
+	UML!Extend.allInstances()->select(
+		ex | ex.extensionLocation->select( ep1 | ep1=ep)->notEmpty()
+	)->collect(ex | ex.owner)->first();
+
+
+rule AssociationToAssociation {
+	from
+		aIn: UML!Association
+	to
+		aOut: UML!Association(
+			ownedEnd <- aIn.ownedEnd,
+			memberEnd <- aOut.ownedEnd
+		)
+}
+
+
+rule OwnedEndToOwnedEnd {
+	from
+		pIn: UML!Property(not pIn.association.oclIsUndefined())
+	to
+		pOut: UML!Property(
+			name <- pIn.name,
+			type <- pIn.type,
+			association <- pIn.association
+		)
+}
 
 --- Rule to transform Actors to Classes
 rule ActorToClass { 
@@ -41,170 +78,90 @@ rule ActorToClass {
 		a : UML!Actor 
 	to
 		c : UML!Class ( 
-				name <- thisModule.standarizeName(a.name) + 'Controller',
+				name <- thisModule.toUpperCamelCase(a.name) + 'Controller',
 				ownedOperation <- thisModule.getAssociatedUseCases(a)->collect(
 					uc |  thisModule.UseCaseToOperation(uc)
 				),
-				generalization <- a.generalization->collect(
-					gen | thisModule.ActorGeneralizationToGeneralization(gen)
-				)
-			)
-	do {
-		for (uc in thisModule.getAssociatedUseCases(a)) {
-			thisModule.ActorUseCaseAssociation(uc, c);
-		}
-	}
+				generalization <- a.generalization
+	)
 }
 
---- Called rule to create association between Actor class and UseCase class
-rule ActorUseCaseAssociation(uc : UML!UseCase, c : UML!Class) {
+rule ExtensionPointToAttribute {
+	from
+		ep :UML!ExtensionPoint
 	to
-		assoc : UML!Association(
-			ownedEnd <- thisModule.OwnedEndFromUseCase(uc),
-			ownedEnd <- thisModule.OwnedEndFromClass(c)
+		p: UML!Property(
+			name <- thisModule.toLowerCamelCase(thisModule.getExtendedUseCase(ep).name),
+			type <- thisModule.getExtendedUseCase(ep),
+			aggregation <- 'shared'
 		)
 }
 
---- Rule to create class from UseCase, adds OwnedAtrribute to class, coresponding to 
---- Included cases and extension cases. Creates Associations
+rule ExtendToComposition {
+	from 
+		e : UML!Extend
+	to
+		a : UML!Association(
+			ownedEnd <- oM,
+			memberEnd <- a.ownedEnd,
+			memberEnd <- e.extensionLocation
+		),
+		oM: UML!Property(
+			name <- e.extendedCase.name,
+			type <- e.extendedCase
+		)
+}
+
+
 rule UseCaseToClass { 
 	from 
 		uc : UML!UseCase
 	to
 		cl : UML!Class(
-				name <- uc.name,
-				generalization <- uc.generalization->collect(
-					gen | thisModule.CaseGeneralizationToGeneralization(gen)
-				),
-				ownedAttribute <- uc.include->collect(
-					inc | thisModule.IncludeToComposition(inc)
-				),
-				ownedAttribute <- thisModule.getExtensionUseCases(uc)->collect(
-					uc1 | thisModule.ExtensionUseCaseToAggregation(uc1)
-				)
-				
-			)
-	do {
-		for (attr in cl.ownedAttribute) {
-			thisModule.UseCaseRelationToAssociation(uc, attr);
-		}
-	}
-	
-}
-
-rule RealiztionToComposition {
-	from
-		r: UML!Realization
-	to
-		a: UML!Association(
-				ownedEnd <- thisModule.RealizationOwnedEndChild(r.supplier->first()),
-				ownedEnd <- thisModule.RealizationOwnedEndOwner(r.client->first()),
-				memberEnd <- a.ownedEnd
+				name <- thisModule.toUpperCamelCase(uc.name),
+				generalization <- uc.generalization,
+				ownedAttribute <- uc.extensionPoint,
+				ownedAttribute <- uc.include,
+				ownedOperation <- op
+			),
+		op : UML!Operation(
+			name <- thisModule.toLowerCamelCase(uc.name)
 		)
 }
 
-lazy rule RealizationOwnedEndChild {
-	from
-		uc: UML!UseCase
-	to
-		p: UML!Property(
-			name <- thisModule.standarizeName(uc.name).toLower(),
-			type <- uc,
-			aggregation <- 'composite'
-		)
-}
 
-lazy rule RealizationOwnedEndOwner {
-	from
-		uc: UML!UseCase
-	to
-		p: UML!Property(
-			name <- thisModule.standarizeName(uc.name).toLower(),
-			type <- uc,
-			upper <- 1,
-			lower <- 1
-			
-		)
-}
-
---- Creates Property for UseCase class to handle 'Include' relation and transform it to composition
-lazy rule IncludeToComposition {
+rule IncludeToComposition {
 	from
 		inc: UML!Include
 	to
-		attr: UML!Property(
-			aggregation <- 'shared',
-			name <- thisModule.standarizeName(inc.addition.name).toLower(),
-			type <- inc.addition
+		oM : UML!Property(
+			name <- inc.addition.name,
+			type <- inc.addition,
+			aggregation <- 'shared'
+		),
+		a: UML!Association(
+			ownedEnd <- oS,
+			memberEnd <- a.ownedEnd,
+			memberEnd <- oM
+		),
+		oS : UML!Property(
+			name <- inc.owner.name,
+			type <- inc.owner
 		)
-}
-
---- Creates Property for UseCase class to handle 'Extend' relation and transform it to aggregation
-lazy rule ExtensionUseCaseToAggregation {
-	from
-		uc : UML!UseCase
-	to
-		attr : UML!Property(
-			aggregation <- 'shared',
-			name <- thisModule.standarizeName(uc.name).toLower(),
-			type <- uc
-		)
-}
-
---- Called rule that creates Association between both Included and Extended pairs of Usecases
-rule UseCaseRelationToAssociation(uc : UML!UseCase, p : UML!Property) {
-	to
-		assoc : UML!Association(
-			ownedEnd <- thisModule.OwnedEndFromUseCase(uc),
-			memberEnd <- assoc.ownedEnd,
-			memberEnd <- p
-		)
-}
-
-
---- Lazy rule to create OwnedEnd Property from UseCase
-lazy rule OwnedEndFromUseCase {
-	from
-		c : UML!UseCase
-	to 
-		p : UML!Property(
-			name <- thisModule.standarizeName(c.name),
-			type <- c
-		)
-}
-
-
---- Lazy rule to create OwnedEnd Property from UseCase
-lazy rule OwnedEndFromClass {
-	from
-		c : UML!Class
-	to 
-		p : UML!Property(
-			type <- c
-		)
+		
 }
 
 
 --- Transforms Generaliztion between Actors to Generalization between classes
-lazy rule ActorGeneralizationToGeneralization {
+rule ActorGeneralizationToGeneralization {
 	from
-		gIn: UML!Generalization(gIn.general.oclIsTypeOf(UML!Actor))
+		gIn: UML!Generalization
 	to
 		gOut: UML!Generalization(
 			general <- gIn.general
 		)
 }
 
-
---- Transforms Generaliztion between UseCases to Generalization between classes
-lazy rule CaseGeneralizationToGeneralization {
-	from
-		gIn: UML!Generalization(gIn.general.oclIsTypeOf(UML!UseCase))
-	to
-		gOut: UML!Generalization(
-			general <- gIn.general
-		)
-}
 
 --- Creates operation for Actor class with provided UseCase
 lazy rule UseCaseToOperation { 
@@ -212,10 +169,107 @@ lazy rule UseCaseToOperation {
 		uc : UML!UseCase
 	to
 		op : UML!Operation ( 
-				name <- thisModule.standarizeName(uc.name).toLower(),
+				name <- thisModule.toLowerCamelCase(uc.name),
 				ownedParameter <- Sequence {}
 			)
 }
+
+
+-- -------------- Activity diagram utils
+
+rule ActivityToActivity {
+	from
+		aIn : UML!Activity
+	to
+		aOut : UML!Activity(
+			name <- aIn.name,
+			node <- aIn.node,
+			edge <- aIn.edge
+		)
+}
+
+rule ParameterToParameter {
+	from
+		pIn: UML!ActivityParameterNode
+	to 
+		pOut: UML!ActivityParameterNode(
+			name <- pIn.name,
+			ordering <- pIn.ordering,
+			type <- pIn.type
+		)
+}
+
+
+rule ActionToAction {
+	from
+		aIn: UML!OpaqueAction
+	to
+		aOut: UML!OpaqueAction(
+			name <- aIn.name,
+			outgoing <- aIn.outgoing,
+			incoming <- aIn.incoming,
+			activity <- aIn.activity
+		)
+}
+
+rule DecisionToDecision {
+	from
+		aIn: UML!DecisionNode
+	to
+		aOut: UML!DecisionNode(
+			name <- aIn.name,
+			outgoing <- aIn.outgoing,
+			incoming <- aIn.incoming,
+			activity <- aIn.activity
+		)
+}
+
+rule InitalToInitial {
+	from
+		aIn: UML!InitialNode
+	to
+		aOut: UML!InitialNode(
+			name <- aIn.name,
+			outgoing <- aIn.outgoing,
+			activity <- aIn.activity
+		)
+}
+
+rule FinalToFinal {
+	from
+		aIn: UML!ActivityFinalNode
+	to
+		aOut: UML!ActivityFinalNode(
+			name <- aIn.name,
+			incoming <- aIn.incoming,
+			activity <- aIn.activity
+		)
+}
+
+
+rule EdgeToEdge {
+	from
+		eIn : UML!ControlFlow
+	to
+		eOut: UML!ControlFlow(
+			source <- eIn.source,
+			target <- eIn.target,
+			guard <- eIn.guard,
+			activity <- eIn.activity
+		)
+}
+
+rule TypeToType {
+	from
+		bIn : UML!PrimitiveType
+	to
+		bOut : UML!PrimitiveType(
+			name <- bIn.name,
+			value <- bIn.value
+		)
+		
+}
+
 
 --- Rule to pack all transformed elements and **new** elements to new model
 rule ModelToModel {
@@ -223,11 +277,12 @@ rule ModelToModel {
 		pIn : UML!Model
 	to 
 		POut : UML!Model(
-			name <- thisModule.standarizeName(pIn.name),
+			name <- thisModule.standarizeName(pIn.name) + 'Class',
 			packagedElement <- pIn.packagedElement,
 			packagedElement <- UML!Association.allInstances()
 		)
 }
+
 
 --- Rule to preserve packages
 rule PackageToPackage {
@@ -241,6 +296,5 @@ rule PackageToPackage {
 			packagedElement <- pIn.packagedElement
 		)
 }
-
 
 

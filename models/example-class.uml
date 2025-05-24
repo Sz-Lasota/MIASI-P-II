@@ -1,78 +1,64 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_KpNm0DZCEfCcLJ1kj-A2nw" name="useCase">
-  <packagedElement xmi:type="uml:Class" xmi:id="_KpNm0TZCEfCcLJ1kj-A2nw" name="MagazynierController">
-    <ownedOperation xmi:id="_KpNm0jZCEfCcLJ1kj-A2nw" name="b"/>
-    <ownedOperation xmi:id="_KpNm0zZCEfCcLJ1kj-A2nw" name="c"/>
-    <ownedOperation xmi:id="_KpNm1DZCEfCcLJ1kj-A2nw" name="usecase15"/>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_KpNm1TZCEfCcLJ1kj-A2nw" name="MasterMagazynierController">
-    <generalization xmi:id="_KpNm1jZCEfCcLJ1kj-A2nw" general="_KpNm0TZCEfCcLJ1kj-A2nw"/>
-    <ownedOperation xmi:id="_KpNm1zZCEfCcLJ1kj-A2nw" name="a"/>
-    <ownedOperation xmi:id="_KpNm2DZCEfCcLJ1kj-A2nw" name="usecase13"/>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_KpNm2TZCEfCcLJ1kj-A2nw" name="A">
-    <ownedAttribute xmi:id="_KpNm2jZCEfCcLJ1kj-A2nw" name="e" type="_KpNm4jZCEfCcLJ1kj-A2nw" aggregation="shared" association="_KpON9DZCEfCcLJ1kj-A2nw"/>
-    <ownedAttribute xmi:id="_KpNm2zZCEfCcLJ1kj-A2nw" name="f" type="_KpNm3zZCEfCcLJ1kj-A2nw" aggregation="shared" association="_KpON9jZCEfCcLJ1kj-A2nw"/>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_KpNm3DZCEfCcLJ1kj-A2nw" name="B">
-    <ownedAttribute xmi:id="_KpNm3TZCEfCcLJ1kj-A2nw" name="d" type="_KpNm4zZCEfCcLJ1kj-A2nw" aggregation="shared" association="_KpON-DZCEfCcLJ1kj-A2nw"/>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_KpNm3jZCEfCcLJ1kj-A2nw" name="C"/>
-  <packagedElement xmi:type="uml:Class" xmi:id="_KpNm3zZCEfCcLJ1kj-A2nw" name="F">
-    <generalization xmi:id="_KpNm4DZCEfCcLJ1kj-A2nw" general="_KpNm3jZCEfCcLJ1kj-A2nw"/>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Package" xmi:id="_KpNm4TZCEfCcLJ1kj-A2nw" name="Package14">
-    <packagedElement xmi:type="uml:Class" xmi:id="_KpNm4jZCEfCcLJ1kj-A2nw" name="E"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_KpNm4zZCEfCcLJ1kj-A2nw" name="D"/>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Package" xmi:id="_KpNm5DZCEfCcLJ1kj-A2nw" name="Package13">
-    <packagedElement xmi:type="uml:Class" xmi:id="_KpNm5TZCEfCcLJ1kj-A2nw" name="UseCase13"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_KpNm5jZCEfCcLJ1kj-A2nw" name="UseCase15">
-      <ownedAttribute xmi:id="_KpNm5zZCEfCcLJ1kj-A2nw" name="a" type="_KpNm2TZCEfCcLJ1kj-A2nw" aggregation="shared" association="_KpON-jZCEfCcLJ1kj-A2nw"/>
-      <ownedAttribute xmi:id="_KpNm6DZCEfCcLJ1kj-A2nw" name="usecase13" type="_KpNm5TZCEfCcLJ1kj-A2nw" aggregation="shared" association="_KpON_DZCEfCcLJ1kj-A2nw"/>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:ActivityParameterNode xmi:id="_cibSuTiIEfC8Q7gP_E-_ow" name="ActivityParameterNode11">
+    <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+  </uml:ActivityParameterNode>
+  <uml:ActivityParameterNode xmi:id="_cibSujiIEfC8Q7gP_E-_ow" name="ActivityParameterNode12"/>
+  <uml:OpaqueAction xmi:id="_cibSuziIEfC8Q7gP_E-_ow" name="OpaqueAction3" incoming="_cibSwDiIEfC8Q7gP_E-_ow _cib5sTiIEfC8Q7gP_E-_ow" outgoing="_cibSwTiIEfC8Q7gP_E-_ow"/>
+  <uml:OpaqueAction xmi:id="_cibSvDiIEfC8Q7gP_E-_ow" name="OpaqueAction7" incoming="_cib5sDiIEfC8Q7gP_E-_ow" outgoing="_cib5sjiIEfC8Q7gP_E-_ow"/>
+  <uml:DecisionNode xmi:id="_cibSvTiIEfC8Q7gP_E-_ow" name="DecisionNode6" incoming="_cibSwTiIEfC8Q7gP_E-_ow" outgoing="_cib5sDiIEfC8Q7gP_E-_ow _cib5sTiIEfC8Q7gP_E-_ow"/>
+  <uml:InitialNode xmi:id="_cibSvjiIEfC8Q7gP_E-_ow" name="UseCase1" outgoing="_cibSwDiIEfC8Q7gP_E-_ow"/>
+  <uml:ActivityFinalNode xmi:id="_cibSvziIEfC8Q7gP_E-_ow" name="ActivityFinalNode2" incoming="_cib5sjiIEfC8Q7gP_E-_ow"/>
+  <uml:Model xmi:id="_cib5sziIEfC8Q7gP_E-_ow" name="MIASI-PClass">
+    <packagedElement xmi:type="uml:Activity" xmi:id="_cibSuDiIEfC8Q7gP_E-_ow" name="Activity1" node="_cibSvjiIEfC8Q7gP_E-_ow _cibSvziIEfC8Q7gP_E-_ow _cibSuziIEfC8Q7gP_E-_ow _cibSvTiIEfC8Q7gP_E-_ow _cibSvDiIEfC8Q7gP_E-_ow _cibSuTiIEfC8Q7gP_E-_ow _cibSujiIEfC8Q7gP_E-_ow">
+      <edge xmi:type="uml:ControlFlow" xmi:id="_cibSwDiIEfC8Q7gP_E-_ow" target="_cibSuziIEfC8Q7gP_E-_ow" source="_cibSvjiIEfC8Q7gP_E-_ow"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_cibSwTiIEfC8Q7gP_E-_ow" target="_cibSvTiIEfC8Q7gP_E-_ow" source="_cibSuziIEfC8Q7gP_E-_ow"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_cib5sDiIEfC8Q7gP_E-_ow" target="_cibSvDiIEfC8Q7gP_E-_ow" source="_cibSvTiIEfC8Q7gP_E-_ow"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_cib5sTiIEfC8Q7gP_E-_ow" target="_cibSuziIEfC8Q7gP_E-_ow" source="_cibSvTiIEfC8Q7gP_E-_ow"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_cib5sjiIEfC8Q7gP_E-_ow" target="_cibSvziIEfC8Q7gP_E-_ow" source="_cibSvDiIEfC8Q7gP_E-_ow"/>
+      <node xmi:type="uml:OpaqueAction" href="#_cibSuziIEfC8Q7gP_E-_ow"/>
+      <node xmi:type="uml:OpaqueAction" href="#_cibSvDiIEfC8Q7gP_E-_ow"/>
+      <node xmi:type="uml:DecisionNode" href="#_cibSvTiIEfC8Q7gP_E-_ow"/>
+      <node xmi:type="uml:InitialNode" href="#_cibSvjiIEfC8Q7gP_E-_ow"/>
+      <node xmi:type="uml:ActivityFinalNode" href="#_cibSvziIEfC8Q7gP_E-_ow"/>
     </packagedElement>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_KpNm6TZCEfCcLJ1kj-A2nw" name="UseCase16"/>
-  <packagedElement xmi:type="uml:Association" xmi:id="_KpON4DZCEfCcLJ1kj-A2nw" memberEnd="_KpON4TZCEfCcLJ1kj-A2nw _KpON4jZCEfCcLJ1kj-A2nw">
-    <ownedEnd xmi:id="_KpON4TZCEfCcLJ1kj-A2nw" name="usecase16" type="_KpNm6TZCEfCcLJ1kj-A2nw" aggregation="composite" association="_KpON4DZCEfCcLJ1kj-A2nw"/>
-    <ownedEnd xmi:id="_KpON4jZCEfCcLJ1kj-A2nw" name="f" type="_KpNm3zZCEfCcLJ1kj-A2nw" association="_KpON4DZCEfCcLJ1kj-A2nw">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_KpON4zZCEfCcLJ1kj-A2nw" value="1"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_KpON5DZCEfCcLJ1kj-A2nw" value="1"/>
-    </ownedEnd>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_KpON5TZCEfCcLJ1kj-A2nw" memberEnd="_KpON5jZCEfCcLJ1kj-A2nw _KpON5zZCEfCcLJ1kj-A2nw">
-    <ownedEnd xmi:id="_KpON5jZCEfCcLJ1kj-A2nw" name="B" type="_KpNm3DZCEfCcLJ1kj-A2nw" association="_KpON5TZCEfCcLJ1kj-A2nw"/>
-    <ownedEnd xmi:id="_KpON5zZCEfCcLJ1kj-A2nw" type="_KpNm0TZCEfCcLJ1kj-A2nw" association="_KpON5TZCEfCcLJ1kj-A2nw"/>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_KpON6DZCEfCcLJ1kj-A2nw" memberEnd="_KpON6TZCEfCcLJ1kj-A2nw _KpON6jZCEfCcLJ1kj-A2nw">
-    <ownedEnd xmi:id="_KpON6TZCEfCcLJ1kj-A2nw" name="C" type="_KpNm3jZCEfCcLJ1kj-A2nw" association="_KpON6DZCEfCcLJ1kj-A2nw"/>
-    <ownedEnd xmi:id="_KpON6jZCEfCcLJ1kj-A2nw" type="_KpNm0TZCEfCcLJ1kj-A2nw" association="_KpON6DZCEfCcLJ1kj-A2nw"/>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_KpON6zZCEfCcLJ1kj-A2nw" memberEnd="_KpON7DZCEfCcLJ1kj-A2nw _KpON7TZCEfCcLJ1kj-A2nw">
-    <ownedEnd xmi:id="_KpON7DZCEfCcLJ1kj-A2nw" name="UseCase15" type="_KpNm5jZCEfCcLJ1kj-A2nw" association="_KpON6zZCEfCcLJ1kj-A2nw"/>
-    <ownedEnd xmi:id="_KpON7TZCEfCcLJ1kj-A2nw" type="_KpNm0TZCEfCcLJ1kj-A2nw" association="_KpON6zZCEfCcLJ1kj-A2nw"/>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_KpON7jZCEfCcLJ1kj-A2nw" memberEnd="_KpON7zZCEfCcLJ1kj-A2nw _KpON8DZCEfCcLJ1kj-A2nw">
-    <ownedEnd xmi:id="_KpON7zZCEfCcLJ1kj-A2nw" name="A" type="_KpNm2TZCEfCcLJ1kj-A2nw" association="_KpON7jZCEfCcLJ1kj-A2nw"/>
-    <ownedEnd xmi:id="_KpON8DZCEfCcLJ1kj-A2nw" type="_KpNm1TZCEfCcLJ1kj-A2nw" association="_KpON7jZCEfCcLJ1kj-A2nw"/>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_KpON8TZCEfCcLJ1kj-A2nw" memberEnd="_KpON8jZCEfCcLJ1kj-A2nw _KpON8zZCEfCcLJ1kj-A2nw">
-    <ownedEnd xmi:id="_KpON8jZCEfCcLJ1kj-A2nw" name="UseCase13" type="_KpNm5TZCEfCcLJ1kj-A2nw" association="_KpON8TZCEfCcLJ1kj-A2nw"/>
-    <ownedEnd xmi:id="_KpON8zZCEfCcLJ1kj-A2nw" type="_KpNm1TZCEfCcLJ1kj-A2nw" association="_KpON8TZCEfCcLJ1kj-A2nw"/>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_KpON9DZCEfCcLJ1kj-A2nw" memberEnd="_KpON9TZCEfCcLJ1kj-A2nw _KpNm2jZCEfCcLJ1kj-A2nw">
-    <ownedEnd xmi:id="_KpON9TZCEfCcLJ1kj-A2nw" name="A" type="_KpNm2TZCEfCcLJ1kj-A2nw" association="_KpON9DZCEfCcLJ1kj-A2nw"/>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_KpON9jZCEfCcLJ1kj-A2nw" memberEnd="_KpON9zZCEfCcLJ1kj-A2nw _KpNm2zZCEfCcLJ1kj-A2nw">
-    <ownedEnd xmi:id="_KpON9zZCEfCcLJ1kj-A2nw" name="A" type="_KpNm2TZCEfCcLJ1kj-A2nw" association="_KpON9jZCEfCcLJ1kj-A2nw"/>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_KpON-DZCEfCcLJ1kj-A2nw" memberEnd="_KpON-TZCEfCcLJ1kj-A2nw _KpNm3TZCEfCcLJ1kj-A2nw">
-    <ownedEnd xmi:id="_KpON-TZCEfCcLJ1kj-A2nw" name="B" type="_KpNm3DZCEfCcLJ1kj-A2nw" association="_KpON-DZCEfCcLJ1kj-A2nw"/>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_KpON-jZCEfCcLJ1kj-A2nw" memberEnd="_KpON-zZCEfCcLJ1kj-A2nw _KpNm5zZCEfCcLJ1kj-A2nw">
-    <ownedEnd xmi:id="_KpON-zZCEfCcLJ1kj-A2nw" name="UseCase15" type="_KpNm5jZCEfCcLJ1kj-A2nw" association="_KpON-jZCEfCcLJ1kj-A2nw"/>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_KpON_DZCEfCcLJ1kj-A2nw" memberEnd="_KpON_TZCEfCcLJ1kj-A2nw _KpNm6DZCEfCcLJ1kj-A2nw">
-    <ownedEnd xmi:id="_KpON_TZCEfCcLJ1kj-A2nw" name="UseCase15" type="_KpNm5jZCEfCcLJ1kj-A2nw" association="_KpON_DZCEfCcLJ1kj-A2nw"/>
-  </packagedElement>
-</uml:Model>
+    <packagedElement xmi:type="uml:Class" xmi:id="_cibSpjiIEfC8Q7gP_E-_ow" name="Actor3Controller">
+      <ownedOperation xmi:id="_cib5tTiIEfC8Q7gP_E-_ow" name="usecase4"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_cibSqziIEfC8Q7gP_E-_ow" name="Usecase4">
+      <ownedAttribute xmi:id="_cibSsziIEfC8Q7gP_E-_ow" name="UseCase7" type="_cibSrTiIEfC8Q7gP_E-_ow" aggregation="shared" association="_cibStDiIEfC8Q7gP_E-_ow"/>
+      <ownedOperation xmi:id="_cibSrDiIEfC8Q7gP_E-_ow" name="usecase4"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_cibSoDiIEfC8Q7gP_E-_ow" memberEnd="_cibSojiIEfC8Q7gP_E-_ow _cibSoziIEfC8Q7gP_E-_ow">
+      <ownedEnd xmi:id="_cibSojiIEfC8Q7gP_E-_ow" name="actor3" type="_cibSpjiIEfC8Q7gP_E-_ow" association="_cibSoDiIEfC8Q7gP_E-_ow"/>
+      <ownedEnd xmi:id="_cibSoziIEfC8Q7gP_E-_ow" name="usecase4" type="_cibSqziIEfC8Q7gP_E-_ow" association="_cibSoDiIEfC8Q7gP_E-_ow"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_cibSpziIEfC8Q7gP_E-_ow" name="Actor6Controller">
+      <generalization xmi:id="_cibStjiIEfC8Q7gP_E-_ow" general="_cibSpjiIEfC8Q7gP_E-_ow"/>
+      <ownedOperation xmi:id="_cib5tjiIEfC8Q7gP_E-_ow" name="usecase1"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_cibSrTiIEfC8Q7gP_E-_ow" name="Usecase7">
+      <generalization xmi:id="_cibStziIEfC8Q7gP_E-_ow" general="_cibSsTiIEfC8Q7gP_E-_ow"/>
+      <ownedOperation xmi:id="_cibSrjiIEfC8Q7gP_E-_ow" name="usecase7"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_cib5tDiIEfC8Q7gP_E-_ow" name="Package8">
+      <packagedElement xmi:type="uml:Class" xmi:id="_cibSrziIEfC8Q7gP_E-_ow" name="Usecase1">
+        <ownedOperation xmi:id="_cibSsDiIEfC8Q7gP_E-_ow" name="usecase1"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_cibSsTiIEfC8Q7gP_E-_ow" name="Usecase9">
+      <ownedAttribute xmi:id="_cibSqDiIEfC8Q7gP_E-_ow" name="usecase1" type="_cibSrziIEfC8Q7gP_E-_ow" aggregation="shared" association="_cibSqTiIEfC8Q7gP_E-_ow"/>
+      <ownedOperation xmi:id="_cibSsjiIEfC8Q7gP_E-_ow" name="usecase9"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_cibSoTiIEfC8Q7gP_E-_ow" memberEnd="_cibSpDiIEfC8Q7gP_E-_ow _cibSpTiIEfC8Q7gP_E-_ow">
+      <ownedEnd xmi:id="_cibSpDiIEfC8Q7gP_E-_ow" name="actor6" type="_cibSpziIEfC8Q7gP_E-_ow" association="_cibSoTiIEfC8Q7gP_E-_ow"/>
+      <ownedEnd xmi:id="_cibSpTiIEfC8Q7gP_E-_ow" name="usecase1" type="_cibSrziIEfC8Q7gP_E-_ow" association="_cibSoTiIEfC8Q7gP_E-_ow"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_cibSqTiIEfC8Q7gP_E-_ow" memberEnd="_cibSqjiIEfC8Q7gP_E-_ow _cibSqDiIEfC8Q7gP_E-_ow">
+      <ownedEnd xmi:id="_cibSqjiIEfC8Q7gP_E-_ow" name="UseCase9" type="_cibSsTiIEfC8Q7gP_E-_ow" association="_cibSqTiIEfC8Q7gP_E-_ow"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_cibStDiIEfC8Q7gP_E-_ow" memberEnd="_cibStTiIEfC8Q7gP_E-_ow _cibSsziIEfC8Q7gP_E-_ow">
+      <ownedEnd xmi:id="_cibStTiIEfC8Q7gP_E-_ow" name="UseCase4" type="_cibSqziIEfC8Q7gP_E-_ow" association="_cibStDiIEfC8Q7gP_E-_ow"/>
+    </packagedElement>
+  </uml:Model>
+</xmi:XMI>
