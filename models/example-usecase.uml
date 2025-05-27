@@ -13,16 +13,19 @@
       <guard xmi:type="uml:LiteralBoolean" xmi:id="_0mZzoDfFEfCn5q5c8uLW4g" name="Tak"/>
     </edge>
     <edge xmi:type="uml:ControlFlow" xmi:id="_gtWNMDiDEfCn5q5c8uLW4g" target="_ZELDIDfEEfCn5q5c8uLW4g" source="_ovi6YDfFEfCn5q5c8uLW4g"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_IriU0DiVEfCn5q5c8uLW4g" target="_XDe6gDiEEfCn5q5c8uLW4g" source="_ZELDIDfEEfCn5q5c8uLW4g"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_cBtQkDibEfCn5q5c8uLW4g" target="_7_jn8DfEEfCn5q5c8uLW4g" source="_i8WbYDiDEfCn5q5c8uLW4g"/>
     <node xmi:type="uml:InitialNode" xmi:id="_SQ-4EDfEEfCn5q5c8uLW4g" name="UseCase1" outgoing="_EBW7MDfFEfCn5q5c8uLW4g"/>
-    <node xmi:type="uml:ActivityFinalNode" xmi:id="_ZELDIDfEEfCn5q5c8uLW4g" name="ActivityFinalNode2" incoming="_gtWNMDiDEfCn5q5c8uLW4g"/>
-    <node xmi:type="uml:OpaqueAction" xmi:id="_7_jn8DfEEfCn5q5c8uLW4g" name="OpaqueAction3" incoming="_EBW7MDfFEfCn5q5c8uLW4g _ugZesDfFEfCn5q5c8uLW4g" outgoing="_nDK4IDfFEfCn5q5c8uLW4g"/>
+    <node xmi:type="uml:ActivityFinalNode" xmi:id="_ZELDIDfEEfCn5q5c8uLW4g" name="ActivityFinalNode2" incoming="_gtWNMDiDEfCn5q5c8uLW4g" outgoing="_IriU0DiVEfCn5q5c8uLW4g"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_7_jn8DfEEfCn5q5c8uLW4g" name="OpaqueAction3" incoming="_EBW7MDfFEfCn5q5c8uLW4g _ugZesDfFEfCn5q5c8uLW4g _cBtQkDibEfCn5q5c8uLW4g" outgoing="_nDK4IDfFEfCn5q5c8uLW4g"/>
     <node xmi:type="uml:DecisionNode" xmi:id="_adVZADfFEfCn5q5c8uLW4g" name="DecisionNode6" incoming="_nDK4IDfFEfCn5q5c8uLW4g" outgoing="_sq1EMDfFEfCn5q5c8uLW4g _ugZesDfFEfCn5q5c8uLW4g"/>
     <node xmi:type="uml:OpaqueAction" xmi:id="_ovi6YDfFEfCn5q5c8uLW4g" name="OpaqueAction7" incoming="_sq1EMDfFEfCn5q5c8uLW4g" outgoing="_gtWNMDiDEfCn5q5c8uLW4g"/>
-    <node xmi:type="uml:ActivityParameterNode" xmi:id="_i8WbYDiDEfCn5q5c8uLW4g" name="ActivityParameterNode11">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    <node xmi:type="uml:ActivityParameterNode" xmi:id="_i8WbYDiDEfCn5q5c8uLW4g" name="ActivityParameterNode11" outgoing="_cBtQkDibEfCn5q5c8uLW4g">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
       <upperBound xmi:type="uml:LiteralInteger" xmi:id="_i8YQkDiDEfCn5q5c8uLW4g" value="1"/>
     </node>
-    <node xmi:type="uml:ActivityParameterNode" xmi:id="_XDe6gDiEEfCn5q5c8uLW4g" name="ActivityParameterNode12" visibility="package">
+    <node xmi:type="uml:ActivityParameterNode" xmi:id="_XDe6gDiEEfCn5q5c8uLW4g" name="ActivityParameterNode12" visibility="package" incoming="_IriU0DiVEfCn5q5c8uLW4g">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBigInteger"/>
       <upperBound xmi:type="uml:LiteralInteger" xmi:id="_XDhWwDiEEfCn5q5c8uLW4g" value="1"/>
     </node>
   </packagedElement>

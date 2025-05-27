@@ -1,64 +1,74 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
-  <uml:ActivityParameterNode xmi:id="_cibSuTiIEfC8Q7gP_E-_ow" name="ActivityParameterNode11">
-    <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+  <uml:OpaqueAction xmi:id="_pvEcoDsFEfCtO7a_pGBn7Q" name="OpaqueAction3" incoming="_pvD1pzsFEfCtO7a_pGBn7Q _pvD1qjsFEfCtO7a_pGBn7Q _pvD1rTsFEfCtO7a_pGBn7Q" outgoing="_pvD1qDsFEfCtO7a_pGBn7Q"/>
+  <uml:OpaqueAction xmi:id="_pvEcoTsFEfCtO7a_pGBn7Q" name="OpaqueAction7" incoming="_pvD1qTsFEfCtO7a_pGBn7Q" outgoing="_pvD1qzsFEfCtO7a_pGBn7Q"/>
+  <uml:InitialNode xmi:id="_pvEcojsFEfCtO7a_pGBn7Q" name="UseCase1" outgoing="_pvD1pzsFEfCtO7a_pGBn7Q"/>
+  <uml:ActivityFinalNode xmi:id="_pvEcozsFEfCtO7a_pGBn7Q" name="ActivityFinalNode2" incoming="_pvD1qzsFEfCtO7a_pGBn7Q" outgoing="_pvD1rDsFEfCtO7a_pGBn7Q"/>
+  <uml:DecisionNode xmi:id="_pvEcpDsFEfCtO7a_pGBn7Q" name="DecisionNode6" incoming="_pvD1qDsFEfCtO7a_pGBn7Q" outgoing="_pvD1qTsFEfCtO7a_pGBn7Q _pvD1qjsFEfCtO7a_pGBn7Q"/>
+  <uml:ActivityParameterNode xmi:id="_pvEcpTsFEfCtO7a_pGBn7Q" name="ActivityParameterNode11" outgoing="_pvD1rTsFEfCtO7a_pGBn7Q">
+    <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
   </uml:ActivityParameterNode>
-  <uml:ActivityParameterNode xmi:id="_cibSujiIEfC8Q7gP_E-_ow" name="ActivityParameterNode12"/>
-  <uml:OpaqueAction xmi:id="_cibSuziIEfC8Q7gP_E-_ow" name="OpaqueAction3" incoming="_cibSwDiIEfC8Q7gP_E-_ow _cib5sTiIEfC8Q7gP_E-_ow" outgoing="_cibSwTiIEfC8Q7gP_E-_ow"/>
-  <uml:OpaqueAction xmi:id="_cibSvDiIEfC8Q7gP_E-_ow" name="OpaqueAction7" incoming="_cib5sDiIEfC8Q7gP_E-_ow" outgoing="_cib5sjiIEfC8Q7gP_E-_ow"/>
-  <uml:DecisionNode xmi:id="_cibSvTiIEfC8Q7gP_E-_ow" name="DecisionNode6" incoming="_cibSwTiIEfC8Q7gP_E-_ow" outgoing="_cib5sDiIEfC8Q7gP_E-_ow _cib5sTiIEfC8Q7gP_E-_ow"/>
-  <uml:InitialNode xmi:id="_cibSvjiIEfC8Q7gP_E-_ow" name="UseCase1" outgoing="_cibSwDiIEfC8Q7gP_E-_ow"/>
-  <uml:ActivityFinalNode xmi:id="_cibSvziIEfC8Q7gP_E-_ow" name="ActivityFinalNode2" incoming="_cib5sjiIEfC8Q7gP_E-_ow"/>
-  <uml:Model xmi:id="_cib5sziIEfC8Q7gP_E-_ow" name="MIASI-PClass">
-    <packagedElement xmi:type="uml:Activity" xmi:id="_cibSuDiIEfC8Q7gP_E-_ow" name="Activity1" node="_cibSvjiIEfC8Q7gP_E-_ow _cibSvziIEfC8Q7gP_E-_ow _cibSuziIEfC8Q7gP_E-_ow _cibSvTiIEfC8Q7gP_E-_ow _cibSvDiIEfC8Q7gP_E-_ow _cibSuTiIEfC8Q7gP_E-_ow _cibSujiIEfC8Q7gP_E-_ow">
-      <edge xmi:type="uml:ControlFlow" xmi:id="_cibSwDiIEfC8Q7gP_E-_ow" target="_cibSuziIEfC8Q7gP_E-_ow" source="_cibSvjiIEfC8Q7gP_E-_ow"/>
-      <edge xmi:type="uml:ControlFlow" xmi:id="_cibSwTiIEfC8Q7gP_E-_ow" target="_cibSvTiIEfC8Q7gP_E-_ow" source="_cibSuziIEfC8Q7gP_E-_ow"/>
-      <edge xmi:type="uml:ControlFlow" xmi:id="_cib5sDiIEfC8Q7gP_E-_ow" target="_cibSvDiIEfC8Q7gP_E-_ow" source="_cibSvTiIEfC8Q7gP_E-_ow"/>
-      <edge xmi:type="uml:ControlFlow" xmi:id="_cib5sTiIEfC8Q7gP_E-_ow" target="_cibSuziIEfC8Q7gP_E-_ow" source="_cibSvTiIEfC8Q7gP_E-_ow"/>
-      <edge xmi:type="uml:ControlFlow" xmi:id="_cib5sjiIEfC8Q7gP_E-_ow" target="_cibSvziIEfC8Q7gP_E-_ow" source="_cibSvDiIEfC8Q7gP_E-_ow"/>
-      <node xmi:type="uml:OpaqueAction" href="#_cibSuziIEfC8Q7gP_E-_ow"/>
-      <node xmi:type="uml:OpaqueAction" href="#_cibSvDiIEfC8Q7gP_E-_ow"/>
-      <node xmi:type="uml:DecisionNode" href="#_cibSvTiIEfC8Q7gP_E-_ow"/>
-      <node xmi:type="uml:InitialNode" href="#_cibSvjiIEfC8Q7gP_E-_ow"/>
-      <node xmi:type="uml:ActivityFinalNode" href="#_cibSvziIEfC8Q7gP_E-_ow"/>
+  <uml:ActivityParameterNode xmi:id="_pvEcpjsFEfCtO7a_pGBn7Q" name="ActivityParameterNode12" incoming="_pvD1rDsFEfCtO7a_pGBn7Q">
+    <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBigInteger"/>
+  </uml:ActivityParameterNode>
+  <uml:Model xmi:id="_pvEcpzsFEfCtO7a_pGBn7Q" name="MIASI-P">
+    <packagedElement xmi:type="uml:Activity" xmi:id="_pvD1pjsFEfCtO7a_pGBn7Q" name="Activity1" node="_pvEcojsFEfCtO7a_pGBn7Q _pvEcozsFEfCtO7a_pGBn7Q _pvEcoDsFEfCtO7a_pGBn7Q _pvEcpDsFEfCtO7a_pGBn7Q _pvEcoTsFEfCtO7a_pGBn7Q _pvEcpTsFEfCtO7a_pGBn7Q _pvEcpjsFEfCtO7a_pGBn7Q">
+      <edge xmi:type="uml:ControlFlow" xmi:id="_pvD1pzsFEfCtO7a_pGBn7Q" target="_pvEcoDsFEfCtO7a_pGBn7Q" source="_pvEcojsFEfCtO7a_pGBn7Q"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_pvD1qDsFEfCtO7a_pGBn7Q" target="_pvEcpDsFEfCtO7a_pGBn7Q" source="_pvEcoDsFEfCtO7a_pGBn7Q"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_pvD1qTsFEfCtO7a_pGBn7Q" target="_pvEcoTsFEfCtO7a_pGBn7Q" source="_pvEcpDsFEfCtO7a_pGBn7Q">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_pvD1rjsFEfCtO7a_pGBn7Q" name="Nie" value="true"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_pvD1qjsFEfCtO7a_pGBn7Q" target="_pvEcoDsFEfCtO7a_pGBn7Q" source="_pvEcpDsFEfCtO7a_pGBn7Q">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_pvD1rzsFEfCtO7a_pGBn7Q" name="Tak"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_pvD1qzsFEfCtO7a_pGBn7Q" target="_pvEcozsFEfCtO7a_pGBn7Q" source="_pvEcoTsFEfCtO7a_pGBn7Q"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_pvD1rDsFEfCtO7a_pGBn7Q" target="_pvEcpjsFEfCtO7a_pGBn7Q" source="_pvEcozsFEfCtO7a_pGBn7Q"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_pvD1rTsFEfCtO7a_pGBn7Q" target="_pvEcoDsFEfCtO7a_pGBn7Q" source="_pvEcpTsFEfCtO7a_pGBn7Q"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_cibSpjiIEfC8Q7gP_E-_ow" name="Actor3Controller">
-      <ownedOperation xmi:id="_cib5tTiIEfC8Q7gP_E-_ow" name="usecase4"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_pvD1lDsFEfCtO7a_pGBn7Q" name="Actor3Controller">
+      <ownedOperation xmi:id="_pvFqwDsFEfCtO7a_pGBn7Q" name="usecase4"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_cibSqziIEfC8Q7gP_E-_ow" name="Usecase4">
-      <ownedAttribute xmi:id="_cibSsziIEfC8Q7gP_E-_ow" name="UseCase7" type="_cibSrTiIEfC8Q7gP_E-_ow" aggregation="shared" association="_cibStDiIEfC8Q7gP_E-_ow"/>
-      <ownedOperation xmi:id="_cibSrDiIEfC8Q7gP_E-_ow" name="usecase4"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_pvD1mTsFEfCtO7a_pGBn7Q" name="Usecase4">
+      <ownedAttribute xmi:id="_pvD1oTsFEfCtO7a_pGBn7Q" name="UseCase7" type="_pvD1mzsFEfCtO7a_pGBn7Q" aggregation="shared" association="_pvD1ojsFEfCtO7a_pGBn7Q"/>
+      <ownedOperation xmi:id="_pvD1mjsFEfCtO7a_pGBn7Q" name="usecase4"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_cibSoDiIEfC8Q7gP_E-_ow" memberEnd="_cibSojiIEfC8Q7gP_E-_ow _cibSoziIEfC8Q7gP_E-_ow">
-      <ownedEnd xmi:id="_cibSojiIEfC8Q7gP_E-_ow" name="actor3" type="_cibSpjiIEfC8Q7gP_E-_ow" association="_cibSoDiIEfC8Q7gP_E-_ow"/>
-      <ownedEnd xmi:id="_cibSoziIEfC8Q7gP_E-_ow" name="usecase4" type="_cibSqziIEfC8Q7gP_E-_ow" association="_cibSoDiIEfC8Q7gP_E-_ow"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_pvDOgDsFEfCtO7a_pGBn7Q" memberEnd="_pvD1kDsFEfCtO7a_pGBn7Q _pvD1kTsFEfCtO7a_pGBn7Q">
+      <ownedEnd xmi:id="_pvD1kDsFEfCtO7a_pGBn7Q" name="actor3" type="_pvD1lDsFEfCtO7a_pGBn7Q" association="_pvDOgDsFEfCtO7a_pGBn7Q"/>
+      <ownedEnd xmi:id="_pvD1kTsFEfCtO7a_pGBn7Q" name="usecase4" type="_pvD1mTsFEfCtO7a_pGBn7Q" association="_pvDOgDsFEfCtO7a_pGBn7Q"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_cibSpziIEfC8Q7gP_E-_ow" name="Actor6Controller">
-      <generalization xmi:id="_cibStjiIEfC8Q7gP_E-_ow" general="_cibSpjiIEfC8Q7gP_E-_ow"/>
-      <ownedOperation xmi:id="_cib5tjiIEfC8Q7gP_E-_ow" name="usecase1"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_pvD1lTsFEfCtO7a_pGBn7Q" name="Actor6Controller">
+      <generalization xmi:id="_pvD1pDsFEfCtO7a_pGBn7Q" general="_pvD1lDsFEfCtO7a_pGBn7Q"/>
+      <ownedOperation xmi:id="_pvGR0DsFEfCtO7a_pGBn7Q" name="usecase1"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_cibSrTiIEfC8Q7gP_E-_ow" name="Usecase7">
-      <generalization xmi:id="_cibStziIEfC8Q7gP_E-_ow" general="_cibSsTiIEfC8Q7gP_E-_ow"/>
-      <ownedOperation xmi:id="_cibSrjiIEfC8Q7gP_E-_ow" name="usecase7"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_pvD1mzsFEfCtO7a_pGBn7Q" name="Usecase7">
+      <generalization xmi:id="_pvD1pTsFEfCtO7a_pGBn7Q" general="_pvD1nzsFEfCtO7a_pGBn7Q"/>
+      <ownedOperation xmi:id="_pvD1nDsFEfCtO7a_pGBn7Q" name="usecase7"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Package" xmi:id="_cib5tDiIEfC8Q7gP_E-_ow" name="Package8">
-      <packagedElement xmi:type="uml:Class" xmi:id="_cibSrziIEfC8Q7gP_E-_ow" name="Usecase1">
-        <ownedOperation xmi:id="_cibSsDiIEfC8Q7gP_E-_ow" name="usecase1"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_pvFDsDsFEfCtO7a_pGBn7Q" name="Package8">
+      <packagedElement xmi:type="uml:Class" xmi:id="_pvD1nTsFEfCtO7a_pGBn7Q" name="Usecase1">
+        <ownedOperation xmi:id="_pvD1njsFEfCtO7a_pGBn7Q" name="usecase1">
+          <ownedParameter xmi:id="_pvHf8DsFEfCtO7a_pGBn7Q" name="ActivityParameterNode11">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_pvIHADsFEfCtO7a_pGBn7Q" name="ActivityParameterNode12" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBigInteger"/>
+          </ownedParameter>
+        </ownedOperation>
       </packagedElement>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_cibSsTiIEfC8Q7gP_E-_ow" name="Usecase9">
-      <ownedAttribute xmi:id="_cibSqDiIEfC8Q7gP_E-_ow" name="usecase1" type="_cibSrziIEfC8Q7gP_E-_ow" aggregation="shared" association="_cibSqTiIEfC8Q7gP_E-_ow"/>
-      <ownedOperation xmi:id="_cibSsjiIEfC8Q7gP_E-_ow" name="usecase9"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_pvD1nzsFEfCtO7a_pGBn7Q" name="Usecase9">
+      <ownedAttribute xmi:id="_pvD1ljsFEfCtO7a_pGBn7Q" name="usecase1" type="_pvD1nTsFEfCtO7a_pGBn7Q" aggregation="shared" association="_pvD1lzsFEfCtO7a_pGBn7Q"/>
+      <ownedOperation xmi:id="_pvD1oDsFEfCtO7a_pGBn7Q" name="usecase9"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_cibSoTiIEfC8Q7gP_E-_ow" memberEnd="_cibSpDiIEfC8Q7gP_E-_ow _cibSpTiIEfC8Q7gP_E-_ow">
-      <ownedEnd xmi:id="_cibSpDiIEfC8Q7gP_E-_ow" name="actor6" type="_cibSpziIEfC8Q7gP_E-_ow" association="_cibSoTiIEfC8Q7gP_E-_ow"/>
-      <ownedEnd xmi:id="_cibSpTiIEfC8Q7gP_E-_ow" name="usecase1" type="_cibSrziIEfC8Q7gP_E-_ow" association="_cibSoTiIEfC8Q7gP_E-_ow"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_pvDOgTsFEfCtO7a_pGBn7Q" memberEnd="_pvD1kjsFEfCtO7a_pGBn7Q _pvD1kzsFEfCtO7a_pGBn7Q">
+      <ownedEnd xmi:id="_pvD1kjsFEfCtO7a_pGBn7Q" name="actor6" type="_pvD1lTsFEfCtO7a_pGBn7Q" association="_pvDOgTsFEfCtO7a_pGBn7Q"/>
+      <ownedEnd xmi:id="_pvD1kzsFEfCtO7a_pGBn7Q" name="usecase1" type="_pvD1nTsFEfCtO7a_pGBn7Q" association="_pvDOgTsFEfCtO7a_pGBn7Q"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_cibSqTiIEfC8Q7gP_E-_ow" memberEnd="_cibSqjiIEfC8Q7gP_E-_ow _cibSqDiIEfC8Q7gP_E-_ow">
-      <ownedEnd xmi:id="_cibSqjiIEfC8Q7gP_E-_ow" name="UseCase9" type="_cibSsTiIEfC8Q7gP_E-_ow" association="_cibSqTiIEfC8Q7gP_E-_ow"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_pvD1lzsFEfCtO7a_pGBn7Q" memberEnd="_pvD1mDsFEfCtO7a_pGBn7Q _pvD1ljsFEfCtO7a_pGBn7Q">
+      <ownedEnd xmi:id="_pvD1mDsFEfCtO7a_pGBn7Q" name="UseCase9" type="_pvD1nzsFEfCtO7a_pGBn7Q" association="_pvD1lzsFEfCtO7a_pGBn7Q"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_cibStDiIEfC8Q7gP_E-_ow" memberEnd="_cibStTiIEfC8Q7gP_E-_ow _cibSsziIEfC8Q7gP_E-_ow">
-      <ownedEnd xmi:id="_cibStTiIEfC8Q7gP_E-_ow" name="UseCase4" type="_cibSqziIEfC8Q7gP_E-_ow" association="_cibStDiIEfC8Q7gP_E-_ow"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_pvD1ojsFEfCtO7a_pGBn7Q" memberEnd="_pvD1ozsFEfCtO7a_pGBn7Q _pvD1oTsFEfCtO7a_pGBn7Q">
+      <ownedEnd xmi:id="_pvD1ozsFEfCtO7a_pGBn7Q" name="UseCase4" type="_pvD1mTsFEfCtO7a_pGBn7Q" association="_pvD1ojsFEfCtO7a_pGBn7Q"/>
     </packagedElement>
   </uml:Model>
 </xmi:XMI>
