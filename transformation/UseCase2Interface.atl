@@ -1,0 +1,234 @@
+module UseCase2Interface;
+-- @nsURI UML=http://www.eclipse.org/uml2/5.0.0/UML
+
+
+create OUT: UML from IN: UML;
+uses UseCaseTransformationLib;
+
+--- Rule transforms associations, owned ends stays the same in OUT model
+rule AssociationToAssociation {
+	from
+		aIn: UML!Association
+	to
+		aOut: UML!Association(
+			ownedEnd <- aIn.ownedEnd,
+			memberEnd <- aOut.ownedEnd
+		)
+}
+
+--- Rule transforms ownedEnd of association, where name, type and owner stays the same
+rule OwnedEndToOwnedEnd {
+	from
+		pIn: UML!Property(not pIn.association.oclIsUndefined())
+	to
+		pOut: UML!Property(
+			name <- pIn.name,
+			type <- pIn.type,
+			association <- pIn.association
+		)
+}
+
+--- Rule transforms Comment to Comment, preserving it's body and connection to annotatedElement
+rule CommentToComment {
+	from
+		cIn: UML!Comment
+	to 
+		cOut: UML!Comment(
+			body <- cIn.body,
+			annotatedElement <- cIn.annotatedElement
+		)
+}
+
+--- Rule transforms Generaliztion between Actors or UseCases to Generalization between classes
+rule GeneralizationToGeneralization {
+	from
+		gIn: UML!Generalization
+	to
+		gOut: UML!Generalization(
+			general <- gIn.general
+		)
+}
+
+--- Rule transforms UseCase to Interface named I<UseCase.name> and Class that implements this interface. Following rules appies:
+--- 	1. Interface have operation called execute<UseCase.name> that takes parameters from Acitivity Diagram with initial node 
+---			with the same name as UseCase if exist, otherwise there are no parameters
+---	 	2. Extension points are transformed to operations called 'extendWith<ExtensionUseCase.name>' and single 'in' parameter 
+---			Type of this parameter is Interface transformed from extension UseCase
+---		3. Includes are transformed to operations called 'include<IncludedUseCase.name>' and single 'in' parameter 
+---			Type of this parameter is Interface transformed from included UseCase.
+---		4. Class implementing this interface is called '<UseCase.name>Impl'
+rule UseCaseToInterfaceAndImplClass {
+	from
+		uc : UML!UseCase
+	to
+		int: UML!Interface(
+			name <- 'I' + thisModule.toUpperCamelCase(uc.name),
+			generalization <- uc.generalization,
+			ownedOperation <- uc.include,
+			ownedOperation <- uc.extensionPoint,
+			ownedOperation <- op
+		),
+		op : UML!Operation(
+			name <- 'execute' + thisModule.toUpperCamelCase(uc.name),
+			isAbstract <- true,
+			ownedParameter <- thisModule.getOperationParameters(uc.name)->collect(
+				ap | thisModule.ActivityParameterToOperationParameter(ap)	
+			)
+		),
+		impl: UML!Class(
+			name <- thisModule.toUpperCamelCase(uc.name) + 'Impl',
+			interfaceRealization <- contr
+			--,package <- int.package
+		),
+		contr: UML!InterfaceRealization(
+			client <- impl,
+			contract <- int,
+			supplier <- int
+		)
+		
+}
+
+--- Rule transforms Include realation to Operation in "whole" usecase and association between "whole" and "part" UseCases
+--- 	1. Created operation is called 'include<IncludedUseCase.name>' 
+---		2. Single 'in' parameter is created, of type of Interface created from included UseCase
+---		3. Association between Included and Including UseCases is created
+rule IncludeToOperation { 
+	from 
+		inc : UML!Include
+	to
+		op : UML!Operation ( 
+				name <- 'include' + thisModule.toUpperCamelCase(inc.addition.name),
+				isAbstract <- true,
+				ownedParameter <- param
+			),
+		param: UML!Parameter(
+			name <- thisModule.toLowerCamelCase(inc.addition.name) + 'Implementation',
+			type <- inc.addition
+		),
+		p1: UML!Property(
+			name <- thisModule.toLowerCamelCase(inc.addition.name),
+			type <- inc.addition
+		),
+		p2: UML!Property(
+			name <- thisModule.toLowerCamelCase(inc.owner.name),
+			type <- inc.owner	
+		),
+		assoc: UML!Association(
+				ownedEnd <- p1,
+				ownedEnd <- p2,
+				memberEnd <- assoc.ownedEnd
+		)
+}
+
+--- Rule transforms Extension realation to Operation in "whole" usecase and association between "whole" and "part" UseCases
+--- 	1. Created operation is called extendWith<ExtendedUseCase.name>' 
+---		2. Single 'in' parameter is created, of type of Interface created from extended UseCase
+---		3. Association between Extended and Extending UseCases is created
+rule ExtensionPointToOperation {
+	from
+		ep: UML!ExtensionPoint
+	to
+		op: UML!Operation(
+			name <- 'extendWith' + thisModule.toUpperCamelCase(thisModule.getExtendedUseCase(ep).name),
+			isAbstract <- true,
+			ownedParameter <- param
+		),
+		param: UML!Parameter(
+			name <- thisModule.toLowerCamelCase(thisModule.getExtendedUseCase(ep).name),
+			type <- thisModule.getExtendedUseCase(ep)
+		),
+		p1: UML!Property(
+			name <- thisModule.toLowerCamelCase(thisModule.getExtendedUseCase(ep).name),
+			type <- thisModule.getExtendedUseCase(ep)
+		),
+		p2: UML!Property(
+			name <- thisModule.toLowerCamelCase(ep.owner.name),
+			type <- ep.owner	
+		),
+		assoc: UML!Association(
+				ownedEnd <- p1,
+				ownedEnd <- p2,
+				memberEnd <- assoc.ownedEnd
+		)
+}
+
+
+--- Lazy rule to transform ActivityParameterNode from activity diagram into
+--- Operation parameter for class diagram, where:
+---	1. Name is not changed
+--- 2. Type is not changed
+--- 3. Direction is based on number of incoming and outgoing edges
+lazy rule ActivityParameterToOperationParameter {
+	from
+		ap: UML!ActivityParameterNode
+	to
+		op: UML!Parameter(
+			name <- ap.name,
+			type <- ap.type,
+			direction <- thisModule.getDirection(ap)
+		)
+}	
+
+
+--- Rule transforms Actors to Access class, where:
+--- 1. Name is transformed to UpperCamelCase and concated with 'Controller' to mark it as access class
+--- 2. Generalizations are preserved from IN model
+--- 3. For each associated Use Case operation is created, with name of Use Case transfered to LowerCamelCase
+rule ActorToClass { 
+	from 
+		a : UML!Actor 
+	to
+		c : UML!Class ( 
+				name <- thisModule.toUpperCamelCase(a.name) + 'Controller',
+				ownedOperation <- thisModule.getAssociatedUseCases(a)->collect(
+					uc |  thisModule.UseCaseToOperation(uc)
+				),
+				generalization <- a.generalization
+	)
+}
+
+--- Rule creates operation for Actor class with provided Use Case with name of this Use Case to LowerCamelCase.
+--- Operation have single 'in' parameter, type of Interface created from UseCase.
+lazy rule UseCaseToOperation { 
+	from 
+		uc : UML!UseCase
+	to
+		op : UML!Operation ( 
+				name <- thisModule.toLowerCamelCase(uc.name),
+				ownedParameter <- param
+			),
+		param: UML!Parameter(
+			name <- thisModule.toLowerCamelCase(uc.name) + 'Implementation',
+			type <- uc
+		)
+}
+
+
+--- Rule to pack all transformed elements and **new** elements to new model
+rule ModelToModel {
+	from
+		pIn : UML!Model
+	to 
+		POut : UML!Model(
+			name <- pIn.name,
+			packagedElement <- pIn.packagedElement,
+			packagedElement <- UML!Association.allInstances(),
+			packagedElement <- UML!Class.allInstances(),
+			ownedComment <- pIn.ownedComment
+		)
+}
+
+--- Rule to preserve packages
+rule PackageToPackage {
+	from
+		pIn : UML!Package(
+			not pIn.oclIsTypeOf(UML!Model)	
+		)
+	to 
+		pOut : UML!Package(
+			name <- pIn.name,
+			packagedElement <- pIn.packagedElement
+		)
+}
+
+

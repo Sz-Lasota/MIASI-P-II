@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_EpXK8k6xEfC2e88vorfX4A" name="MIASI-P">
+  <ownedComment xmi:id="_EpWj4E6xEfC2e88vorfX4A">
+    <annotatedElement xmi:type="uml:UseCase" href="example-usecase.uml#_JGJqwDfFEfCn5q5c8uLW4g"/>
+    <body>Some comment for UseCase4
+</body>
+  </ownedComment>
+  <packagedElement xmi:type="uml:Class" xmi:id="_EpXK8E6xEfC2e88vorfX4A" name="Actor3Controller">
+    <ownedOperation xmi:id="_EpXK806xEfC2e88vorfX4A" name="usecase4">
+      <ownedParameter xmi:id="_EpXyAE6xEfC2e88vorfX4A" name="ActpamrIn">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDouble"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:id="_EpZnME6xEfC2e88vorfX4A" name="usecase4includeUsecase7"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_EpXK8U6xEfC2e88vorfX4A" name="Actor6Controller">
+    <generalization xmi:id="_EpWj4U6xEfC2e88vorfX4A" general="_EpXK8E6xEfC2e88vorfX4A"/>
+    <ownedOperation xmi:id="_EpaOQE6xEfC2e88vorfX4A" name="usecase1">
+      <ownedParameter xmi:id="_Epa1UE6xEfC2e88vorfX4A" name="ActivityParameterNode11">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_Epa1UU6xEfC2e88vorfX4A" name="ActivityParameterNode12" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBigInteger"/>
+      </ownedParameter>
+    </ownedOperation>
+  </packagedElement>
+</uml:Model>

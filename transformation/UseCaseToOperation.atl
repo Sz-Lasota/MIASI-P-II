@@ -1,0 +1,117 @@
+-- @nsURI UML=http://www.eclipse.org/uml2/5.0.0/UML
+
+module UseCaseToOperation;
+create OUT : UML from IN : UML;
+uses UseCaseTransformationLib;
+
+--- Rule transforms Generaliztion between Actors to Generalization between classes
+rule GeneralizationToGeneralization {
+	from
+		gIn: UML!Generalization(gIn.general.oclIsTypeOf(UML!Actor))
+	to
+		gOut: UML!Generalization(
+			general <- gIn.general
+		)
+}
+
+--- Lazy rule to transform ActivityParameterNode from activity diagram into
+--- Operation parameter for class diagram, where:
+---	1. Name is not changed
+--- 2. Type is not changed
+--- 3. Direction is based on number of incoming and outgoing edges
+lazy rule ActivityParameterToOperationParameter {
+	from
+		ap: UML!ActivityParameterNode
+	to
+		op: UML!Parameter(
+			name <- ap.name,
+			type <- ap.type,
+			direction <- thisModule.getDirection(ap)
+		)
+}	
+
+
+--- Called rule that takes Include relation instance and Actor and creates operation to represent include relation between 
+---	 Included and including UseCases
+rule IncludeToOperation(inc: UML!Include, a: UML!Actor){
+	to
+		op: UML!Operation(
+			name <- thisModule.toLowerCamelCase(inc.owner.name) + 'include' + thisModule.toUpperCamelCase(inc.addition.name),
+			ownedParameter <-thisModule.getOperationParameters(inc.addition.name)->collect(
+				ap | thisModule.ActivityParameterToOperationParameter(ap)	
+			),
+			class <- a
+		)
+}
+
+--- Called rule that takes ExtensionPoin instance and Actor and creates operation to represent extend relation between 
+---	 extended and extending UseCases
+rule ExtensionPointToOperation(ep: UML!ExtensionPoint, a: UML!Actor) {
+	to
+		op: UML!Operation(
+			name <-  thisModule.toUpperCamelCase(ep.owner.name) + 'extendWith' + thisModule.toLowerCamelCase(thisModule.getExtendedUseCase(ep).name),
+			ownedParameter <-thisModule.getOperationParameters(thisModule.getExtendedUseCase(ep).name)->collect(
+				ap | thisModule.ActivityParameterToOperationParameter(ap)	
+			),
+			class <- a
+		)
+}
+
+--- Called rule that takes UseCase associated with actor and this Actor and creates Operation, owned by actor
+--- parameters for this operation are taken from Activity diagram, that have initial node with the same name as 
+--- UseCase, if exists otherwise there are no parameters. It allso calls rules to create operations for included and extended UseCases
+rule UseCaseToOperation(uc: UML!UseCase, a: UML!Actor) {
+	to
+		op: UML!Operation(
+			name <- thisModule.toLowerCamelCase(uc.name),
+			ownedParameter <- thisModule.getOperationParameters(uc.name)->collect(
+				ap | thisModule.ActivityParameterToOperationParameter(ap)	
+			),
+			class <- a
+		)
+		
+	do {
+		for (inc in uc.include) {
+			thisModule.IncludeToOperation(inc, a);	
+		}
+		
+		for (ep in uc.extensionPoint) {
+			thisModule.ExtensionPointToOperation(ep, a);
+		}
+	}
+	
+}
+
+--- Rule transforms Actors to Access class, where:
+--- 1. Name is transformed to UpperCamelCase and concated with 'Controller' to mark it as access class
+--- 2. Generalizations are preserved from IN model
+--- 3. For each associated Use Case operation is created, with name of Use Case transfered to LowerCamelCase
+rule ActorToClass { 
+	from 
+		a : UML!Actor 
+	to
+		c : UML!Class ( 
+				name <- thisModule.toUpperCamelCase(a.name) + 'Controller',
+				
+				generalization <- a.generalization
+	)
+	do {
+		for (uc in thisModule.getAssociatedUseCases(a)) {
+				thisModule.UseCaseToOperation(uc, a);
+		}
+		
+	}
+}
+
+--- Rule to pack all transformed elements and **new** elements to new model
+rule ModelToModel {
+	from
+		pIn : UML!Model
+	to 
+		POut : UML!Model(
+			name <- pIn.name,
+			packagedElement <- pIn.packagedElement,
+			ownedComment <- pIn.ownedComment
+		)
+}
+

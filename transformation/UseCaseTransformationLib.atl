@@ -1,0 +1,71 @@
+library UseCaseTransformationLib;
+
+--- Helper gets all UseCases associated with provided Actor
+--- Params:
+---		a: UML!Actor - Atctor to find associated UseCases
+helper def : getAssociatedUseCases(a : UML!Actor) : Sequence(UML!UseCase) =
+	UML!Association.allInstances()->select(
+		assoc | assoc.ownedEnd->select(end | end.oclIsTypeOf(UML!Property) and end.type = a)->notEmpty()
+	)->collect(
+		assoc | assoc.ownedEnd->select(end | not (end.type = a))->first().type
+	)->asSequence();
+
+--- Helper transforms names with spaces to non-space names, by replacing spaces with underscore ('_')
+--- Params:
+---		s: String - name to remove spaces
+helper def : standarizeName(s : String) : String = s.replaceAll(' ', '_');
+
+--- Helper transforms given name to LowerCamelCase
+--- Params:
+---		s: String - name to transform to LowerCamelCase
+helper def: toLowerCamelCase(input : String) : String =
+  let words : Sequence(String) = input.split(' ') in
+  let firstWord : String = words->first().toLower() in
+  let restWords : String = words->subSequence(2, words->size())->collect(
+  	w | w.substring(1, 1).toUpper() + w.substring(2, w.size()).toLower()
+  )->iterate(w; acc : String = '' | acc + w) in
+  firstWord + restWords;
+
+  
+--- Helper transforms given name to UpperCamelCase
+--- Params:
+---		s: String - name to transform to UpperCamelCase
+helper def: toUpperCamelCase(input : String) : String =
+  let words : Sequence(String) = input.split(' ') in
+  words->collect(
+  	w | w.substring(1, 1).toUpper() + w.substring(2, w.size()).toLower()
+  )->iterate(w; acc : String = '' | acc + w);
+
+
+--- Helper gets Use case that extends owner of provided extension point
+--- Params:
+---		ep: UML!ExtensionPoint - extension point for which owner to find UseCases that extends it
+helper def : getExtendedUseCase(ep: UML!ExtensionPoint) : UML!UseCase =
+	UML!Extend.allInstances()->select(
+		ex | ex.extensionLocation->select( ep1 | ep1=ep)->notEmpty()
+	)->collect(ex | ex.owner)->first();
+
+
+--- Helper gets all Activity Parameter Nodes from activity associated with UseCase based on uscase name
+--- Params:
+--- 	ucName: String - name of Use Case for which to find parameter nodes
+helper def : getOperationParameters(ucName: String) : Sequence(UML!ActivityParameterNode) =
+	UML!Activity.allInstances()->select(
+		a | a.ownedElement->select( el | el.oclIsTypeOf(UML!InitialNode) and el.name = ucName)->notEmpty()	
+	)->collect(
+		a | a.node->select(n | n.oclIsTypeOf(UML!ActivityParameterNode))	
+	)->flatten()->asSequence();
+
+
+--- Helper that gets direction of Parameter Nodel, if node has no incoming edges and has any outgoing is considered
+--- 'in' parameter, 'return' otherwise
+--- Params:
+---		ap: UML!ActivityParameterNode - Parameter node for which to determine direction
+ helper def : getDirection(ap: UML!ActivityParameterNode) : String =
+ 	if ap.incoming->isEmpty() and ap.outgoing->notEmpty()
+	then
+		'in'
+	else
+		'return'
+	endif;
+

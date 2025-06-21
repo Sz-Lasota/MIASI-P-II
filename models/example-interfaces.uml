@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_c38aqk7MEfC2e88vorfX4A" name="MIASI-P">
+  <ownedComment xmi:id="_c37zhk7MEfC2e88vorfX4A" annotatedElement="_c37ziU7MEfC2e88vorfX4A">
+    <body>Some comment for UseCase4
+</body>
+  </ownedComment>
+  <packagedElement xmi:type="uml:Class" xmi:id="_c38aqE7MEfC2e88vorfX4A" name="Actor3Controller">
+    <ownedOperation xmi:id="_c3-20E7MEfC2e88vorfX4A" name="usecase4">
+      <ownedParameter xmi:id="_c3-20U7MEfC2e88vorfX4A" name="usecase4Implementation" type="_c37ziU7MEfC2e88vorfX4A"/>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_c37ziU7MEfC2e88vorfX4A" name="IUsecase4">
+    <ownedOperation xmi:id="_c38ank7MEfC2e88vorfX4A" name="includeUsecase7" isAbstract="true">
+      <ownedParameter xmi:id="_c38an07MEfC2e88vorfX4A" name="usecase7Implementation" type="_c38akk7MEfC2e88vorfX4A"/>
+    </ownedOperation>
+    <ownedOperation xmi:id="_c37zik7MEfC2e88vorfX4A" name="executeUsecase4" isAbstract="true">
+      <ownedParameter xmi:id="_c39BoE7MEfC2e88vorfX4A" name="ActpamrIn">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDouble"/>
+      </ownedParameter>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_c37zgE7MEfC2e88vorfX4A" memberEnd="_c37zgk7MEfC2e88vorfX4A _c37zg07MEfC2e88vorfX4A">
+    <ownedEnd xmi:id="_c37zgk7MEfC2e88vorfX4A" name="actor3" type="_c38aqE7MEfC2e88vorfX4A" association="_c37zgE7MEfC2e88vorfX4A"/>
+    <ownedEnd xmi:id="_c37zg07MEfC2e88vorfX4A" name="usecase4" type="_c37ziU7MEfC2e88vorfX4A" association="_c37zgE7MEfC2e88vorfX4A"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_c38aqU7MEfC2e88vorfX4A" name="Actor6Controller">
+    <generalization xmi:id="_c37zh07MEfC2e88vorfX4A" general="_c38aqE7MEfC2e88vorfX4A"/>
+    <ownedOperation xmi:id="_c3_d4E7MEfC2e88vorfX4A" name="usecase1">
+      <ownedParameter xmi:id="_c3_d4U7MEfC2e88vorfX4A" name="usecase1Implementation" type="_c38alk7MEfC2e88vorfX4A"/>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_c38akk7MEfC2e88vorfX4A" name="IUsecase7">
+    <generalization xmi:id="_c37ziE7MEfC2e88vorfX4A" general="_c38amk7MEfC2e88vorfX4A"/>
+    <ownedOperation xmi:id="_c38ak07MEfC2e88vorfX4A" name="executeUsecase7" isAbstract="true"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_c38aq07MEfC2e88vorfX4A" name="Package8">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_c38alk7MEfC2e88vorfX4A" name="IUsecase1">
+      <ownedOperation xmi:id="_c38al07MEfC2e88vorfX4A" name="executeUsecase1" isAbstract="true">
+        <ownedParameter xmi:id="_c3-PwE7MEfC2e88vorfX4A" name="ActivityParameterNode11">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_c3-PwU7MEfC2e88vorfX4A" name="ActivityParameterNode12" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBigInteger"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_c38amk7MEfC2e88vorfX4A" name="IUsecase9">
+    <ownedOperation xmi:id="_c38ao07MEfC2e88vorfX4A" name="extendWithUsecase1" isAbstract="true">
+      <ownedParameter xmi:id="_c38apE7MEfC2e88vorfX4A" name="usecase1" type="_c38alk7MEfC2e88vorfX4A"/>
+    </ownedOperation>
+    <ownedOperation xmi:id="_c38am07MEfC2e88vorfX4A" name="executeUsecase9" isAbstract="true"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_c37zgU7MEfC2e88vorfX4A" memberEnd="_c37zhE7MEfC2e88vorfX4A _c37zhU7MEfC2e88vorfX4A">
+    <ownedEnd xmi:id="_c37zhE7MEfC2e88vorfX4A" name="actor6" type="_c38aqU7MEfC2e88vorfX4A" association="_c37zgU7MEfC2e88vorfX4A"/>
+    <ownedEnd xmi:id="_c37zhU7MEfC2e88vorfX4A" name="usecase1" type="_c38alk7MEfC2e88vorfX4A" association="_c37zgU7MEfC2e88vorfX4A"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_c38aok7MEfC2e88vorfX4A" memberEnd="_c38aoE7MEfC2e88vorfX4A _c38aoU7MEfC2e88vorfX4A">
+    <ownedEnd xmi:id="_c38aoE7MEfC2e88vorfX4A" name="usecase7" type="_c38akk7MEfC2e88vorfX4A" association="_c38aok7MEfC2e88vorfX4A"/>
+    <ownedEnd xmi:id="_c38aoU7MEfC2e88vorfX4A" name="usecase4" type="_c37ziU7MEfC2e88vorfX4A" association="_c38aok7MEfC2e88vorfX4A"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_c38ap07MEfC2e88vorfX4A" memberEnd="_c38apU7MEfC2e88vorfX4A _c38apk7MEfC2e88vorfX4A">
+    <ownedEnd xmi:id="_c38apU7MEfC2e88vorfX4A" name="usecase1" type="_c38alk7MEfC2e88vorfX4A" association="_c38ap07MEfC2e88vorfX4A"/>
+    <ownedEnd xmi:id="_c38apk7MEfC2e88vorfX4A" name="usecase9" type="_c38amk7MEfC2e88vorfX4A" association="_c38ap07MEfC2e88vorfX4A"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_c38akE7MEfC2e88vorfX4A" name="Usecase4Impl">
+    <interfaceRealization xmi:id="_c38akU7MEfC2e88vorfX4A" client="_c38akE7MEfC2e88vorfX4A" supplier="_c37ziU7MEfC2e88vorfX4A" contract="_c37ziU7MEfC2e88vorfX4A"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_c38alE7MEfC2e88vorfX4A" name="Usecase7Impl">
+    <interfaceRealization xmi:id="_c38alU7MEfC2e88vorfX4A" client="_c38alE7MEfC2e88vorfX4A" supplier="_c38akk7MEfC2e88vorfX4A" contract="_c38akk7MEfC2e88vorfX4A"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_c38amE7MEfC2e88vorfX4A" name="Usecase1Impl">
+    <interfaceRealization xmi:id="_c38amU7MEfC2e88vorfX4A" client="_c38amE7MEfC2e88vorfX4A" supplier="_c38alk7MEfC2e88vorfX4A" contract="_c38alk7MEfC2e88vorfX4A"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_c38anE7MEfC2e88vorfX4A" name="Usecase9Impl">
+    <interfaceRealization xmi:id="_c38anU7MEfC2e88vorfX4A" client="_c38anE7MEfC2e88vorfX4A" supplier="_c38amk7MEfC2e88vorfX4A" contract="_c38amk7MEfC2e88vorfX4A"/>
+  </packagedElement>
+</uml:Model>
